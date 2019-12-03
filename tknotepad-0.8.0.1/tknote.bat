@@ -1,4 +1,4 @@
-C:\Tcl\bin\wish tknotepad %1 
+C:\Tcl\bin\wish tknotepad.tcl %1 
 
 
 
