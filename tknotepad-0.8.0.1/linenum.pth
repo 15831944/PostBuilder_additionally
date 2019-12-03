@@ -1,0 +1,33 @@
+set color [.filemenu cget -background]
+entry .statusind -relief flat -state disabled -background $color
+entry .modified -relief flat -state disabled -background $color
+pack .modified -in .bottombottommenu -side left -expand 0
+pack .statusind -in .bottombottommenu -side right -expand 0 
+
+# this proc gets the posn and sets the statusbar
+proc keyposn {} {
+    .statusind configure -state normal
+    set indexin [.textarea index insert]
+    .statusind delete 0 end 
+    .statusind insert 0 "line.column $indexin"
+    .statusind configure -state disabled
+}
+
+# set the initial cursor position call keyposn on it and reset window geometry
+textSetCursor "1.0"
+keyposn
+wm geometry . 45x24
+
+# set new bindings
+bind .textarea <KeyRelease> {keyposn}
+bind .textarea <ButtonRelease> {keyposn}
+
+# this proc shows if the file is modifed or not
+# is changed is either space or modified
+proc modifiedstatus { ischanged } {
+    .modified configure -state normal
+    .modified delete 0 end
+    .modified insert 0 $ischanged
+    .modified configure -state disabled
+}
+

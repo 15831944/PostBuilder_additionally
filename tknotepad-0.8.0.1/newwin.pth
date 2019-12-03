@@ -1,0 +1,8 @@
+.filemenu.files delete last
+
+.filemenu.files add command -label "New Window" -underline 4 -command "eval exec $BASENAME &"
+.filemenu.files add separator
+
+.filemenu.files add command -label "Exit" -underline 1 -command "exitapp"
+
+

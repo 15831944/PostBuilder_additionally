@@ -1,0 +1,9 @@
+proc showpopup {} {
+    set numx [winfo pointerx .]
+    set numy [winfo pointery .]
+    tk_popup .filemenu.edit $numx $numy
+}
+
+bind .textarea <Button-2> {showpopup}
+bind .textarea <Button-3> {showpopup}
+
